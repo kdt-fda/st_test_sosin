@@ -5,6 +5,17 @@ import pandas as pd
 from faker import Faker
 from streamlit_autorefresh import st_autorefresh
 
+import os
+
+if 'DB_PASSWORD' in os.environ:
+    db_password = os.environ['DB_PASSWORD']
+    # 환경변수가 있으면, 앱 코드들
+    st.write(db_password)
+else:
+    # 없으면,
+    st.error('환경변수를 입력해주세요.')
+
+
 engine = create_engine('sqlite:///users.db')
 metadata = MetaData()
 
